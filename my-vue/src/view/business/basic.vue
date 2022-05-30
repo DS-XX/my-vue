@@ -103,7 +103,16 @@ export default {
           const formValue = this.$refs.form.model
           console.log(formValue, 'this.isvalue')
           console.log(this.$api, 'this.is.api')
-          this.$api.loginAPI.getUser()
+          const params = {
+            loginName: formValue.loginName,
+            password: formValue.password
+          }
+          // this.$api.loginAPI.createName(params).then(res=>{
+          //   console.log(res,'this.is.res')
+          // })
+          this.$api.loginAPI.login(params).then(res=>{
+            console.log(res,'this.is.res')
+          })
           // this.$axios({
           //   url: '/user/list',
           //   methods: 'get'

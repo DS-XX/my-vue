@@ -3,7 +3,7 @@
    *
    * */
 const base = {
-  localhost: 'localhost',
+  localhost: '/myself-axios',
   other: 'https://kf.kaisir.cn/api'
 }
 
