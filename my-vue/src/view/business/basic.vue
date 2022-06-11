@@ -1,26 +1,5 @@
 <template>
   <div class="containAll">
-    <el-form
-      ref="form"
-      :model="form"
-      :rules="rules"
-      :inline="false"
-      label-width="80px"
-      size="normal"
-      class="formWidth">
-      <el-form-item label="登录账号">
-        <el-input v-model="form.loginName"/>
-      </el-form-item>
-      <el-form-item label="登录密码">
-        <el-input v-model="form.password"/>
-      </el-form-item>
-      <el-form-item>
-        <el-button
-          type="primary"
-          @click="onSubmit('form')">立即创建</el-button>
-        <el-button @click="resetForm('form')">清空</el-button>
-      </el-form-item>
-    </el-form>
     <div
       ref="divRef"
       style="display:flex;direction:row">
@@ -59,10 +38,20 @@
         @click="showInput">+ New Tag</el-button>
 
     </div>
-    <el-input
-      :style="{width:inputWidth}"
-    />
-    {{ inputWidth }}
+    <el-row>
+
+    
+    <el-button @click="()=>{this.$router.push('/du/login')}">
+        跳转到登录页面
+    </el-button>
+    <el-button @click="searchAll">
+        查询所有
+    </el-button>
+</el-row>
+    <el-table :data="tableData">
+      <el-table-column label="账号" prop="loginName"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+    </el-table>
   </div>
 </template>
 <script>
@@ -81,49 +70,16 @@ export default {
       inputWidth: '',
       inputValue: '',
       inputVisible: false,
-      form: {
-        loginName: '',
-        password: ''
-      },
-      rules: {
-        loginName: [
-          { required: true, message: '请输入登录名', trigger: 'change' },
-          { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
-        ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'change' }
-        ]
-      }
+      tableData:[]
     }
   },
   methods: {
-    onSubmit (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          const formValue = this.$refs.form.model
-          console.log(formValue, 'this.isvalue')
-          console.log(this.$api, 'this.is.api')
-          const params = {
-            loginName: formValue.loginName,
-            password: formValue.password
-          }
-          // this.$api.loginAPI.createName(params).then(res=>{
-          //   console.log(res,'this.is.res')
-          // })
-          this.$api.loginAPI.login(params).then(res=>{
-            console.log(res,'this.is.res')
-          })
-          // this.$axios({
-          //   url: '/user/list',
-          //   methods: 'get'
-          // }).then(res => {
-          //   console.log(res, 'this,is.res')
-          // })
+    searchAll(){
+      this.$api.loginAPI.searchAll().then(res=>{
+        if(res?.data?.payload){
+          this.tableData = res.data.payload
         }
       })
-    },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
     },
     clickdb (index) {
       const width = this.$refs.divRef.children[index].offsetWidth

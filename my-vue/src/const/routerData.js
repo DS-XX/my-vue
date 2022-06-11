@@ -10,6 +10,10 @@ const routerData = [
       {
         name: '标签',
         pathUrl: '/du/door/tags'
+      },
+      {
+        name: '新的选择',
+        pathUrl: '/du/newSelect'
       }
     ]
   }

@@ -8,6 +8,10 @@ const websiteManageAPI = {
   login (params) {
     return services.post(`${base.localhost}/user/login`, params)
   },
+  //查询所有的
+  searchAll(){
+    return services.get(`${base.localhost}/user/list`)
+  },
   // 测试post接口
   getUser (params) {
     return services.get(`${base.localhost}/user/list`, params)

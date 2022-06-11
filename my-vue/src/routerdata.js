@@ -14,5 +14,21 @@ export default[
     meta: {
       title: '标签相关'
     }
+  },
+  {
+    name: 'login',
+    path: '/du/login',
+    component: () => import('./view/login/index'),
+    meta: {
+      title: '登录'
+    }
+  },
+  {
+    name: 'newSelect',
+    path: '/du/newSelect',
+    component: () => import('./view/new-select/index'),
+    meta: {
+      title: '新的选额'
+    }
   }
 ]
