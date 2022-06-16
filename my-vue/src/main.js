@@ -5,6 +5,7 @@ import App from './App'
 import axios from 'axios'
 // import ElementUI from 'element-ui'
 import './element'
+import './ant-design-vue'
 import router from './router'
 import base from './api/base.js'
 
