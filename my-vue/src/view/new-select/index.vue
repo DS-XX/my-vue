@@ -50,42 +50,18 @@
   </el-select>
 </template>
 <script>
+//监听selectId来修改tree的节点，会卡顿
 export default {
-  name: "NewSelect",
+  name: "newTreeSelect",
+  props:{
+    data: {
+      type: Array,
+      default: ()=>[]
+    }
+  },
   data() {
     return {
       selectValue: [],
-      treeData: [
-        {
-          title: "parent 1",
-          value: "parent 1",
-          color: "pink",
-          children: [
-            {
-              title: "parent 1-0",
-              value: "parent 1-0",
-              color: "orange",
-              children: [
-                {
-                  title: "my leaf",
-                  value: "leaf1",
-                  color: "green",
-                },
-                {
-                  title: "your leaf",
-                  value: "leaf2",
-                  color: "cyan",
-                },
-              ],
-            },
-            {
-              title: "parent 1-1",
-              value: "parent 1-1",
-              color: "blue",
-            },
-          ],
-        },
-      ],
       value: "",
       data: [
         {

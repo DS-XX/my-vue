@@ -30,5 +30,13 @@ export default[
     meta: {
       title: '新的选额'
     }
+  },
+  {
+    name: 'nodeTest',
+    path: '/du/nodeTest',
+    component: ()=>import('./view/nodeTest/index'),
+    meta: {
+      title: 'node的test'
+    }
   }
 ]

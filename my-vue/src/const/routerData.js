@@ -14,6 +14,10 @@ const routerData = [
       {
         name: '新的选择',
         pathUrl: '/du/newSelect'
+      },
+      {
+        name: 'node的测试',
+        pathUrl: '/du/nodeTest'
       }
     ]
   }
