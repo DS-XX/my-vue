@@ -76,7 +76,6 @@ _axios.interceptors.request.use(
   function (config) {
     // 从vuex里获取token
     const token = store.state.token
-    debugger
     // 如果token存在就在请求头里添加
     token && (config.headers.Authorization = `Bearer ${token}`)
     return config

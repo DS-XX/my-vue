@@ -46,5 +46,13 @@ export default[
     meta: {
       title: 'register'
     }
+  },
+  {
+    name: 'home',
+    path: '/du/home',
+    component: ()=>import('./view/nodeTest/home'),
+    meta: {
+      title: 'home'
+    }
   }
 ]

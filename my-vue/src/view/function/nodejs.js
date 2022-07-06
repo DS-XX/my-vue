@@ -1,10 +1,10 @@
 const fs = require('fs')
 const path = require('path')
-fs.readFile('./test.txt','utf8', (err, data) => {
-    console.log(err,'this.is.err')
-    if (err) throw err;
-    console.log(data);
-  });
+// fs.readFile('./test.txt','utf8', (err, data) => {
+//     console.log(err,'this.is.err')
+//     if (err) throw err;
+//     console.log(data);
+//   });
 
 // let x = ''
 // for(let i =0;i<100;i++){
@@ -90,6 +90,7 @@ const secretKey = 'ithemia no1'
 
 
 const session = require('express-session');
+const { request } = require('http');
 app.use(
     session({
         secret: 'itheima',
@@ -99,7 +100,7 @@ app.use(
 )
 
 //设置token的验证
-app.use(expressJWT({secret:secretKey, algorithms: ['RS256']}).unless({path: ["/login","/register"]}))
+app.use(expressJWT({secret:secretKey, algorithms: ['HS256']}).unless({path: ["/login","/register"]}))
 
 //login
 app.post('/login',(req,res)=>{
@@ -127,7 +128,7 @@ app.post('/login',(req,res)=>{
             return
         }
         //token的设置
-        const tokenStr = jwt.sign({loginName:body.loginName},secretKey,{expiresIn: '100s'})
+        const tokenStr = jwt.sign({loginName:body.loginName},secretKey,{expiresIn: '3600000s'})
         res.send({
             status: 200,
             msg: '登陆成功',
@@ -167,13 +168,21 @@ app.get('/user',(req,res)=>{
         console.log(results,'results')
         res.send(results)
     })
-    connection.end()
+    // connection.end()
 })
 
-//轮播图
-app.post('/homePicture',(req,res)=>{
-    const body = req.body
-    sql = `select * from `
+//图片的获取
+app.get('/homePicture',(req,res)=>{
+    sql = `select url from picture`
+    connection.query(sql,(err,requests)=>{
+        if(!err){
+            res.send({
+                data: {
+                    url: requests.map(item=>item.url)
+                }
+            })
+        }
+    })
 })
 
 app.get('/user:loginName',(req,res)=>{

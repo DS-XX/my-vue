@@ -1,8 +1,8 @@
 <template>
     <div class="block">
-        <el-carousel height="150px">
+        <el-carousel height="400px">
             <el-carousel-item v-for="item in homePicture" :key="item">
-                <h3 class="small">{{ item }}</h3>
+                <img :src="item"></img>
             </el-carousel-item>
         </el-carousel>
   </div>
@@ -16,8 +16,8 @@ export default {
         }
     },
     mounted(){
-        this.$api.nodeApi.homePicture().then(()=>{
-            
+        this.$api.nodeAPI.homePicture().then((res)=>{
+            this.homePicture = res.data.url
         })
     }
 }

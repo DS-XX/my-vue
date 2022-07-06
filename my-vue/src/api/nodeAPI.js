@@ -16,8 +16,8 @@ const nodeAPI = {
     register(params){
         return services.post(`${base.localhost}/register`,params)
     },
-    homePicture(params){
-        return services.post(`${base.localhost}/homePicture`,params)
+    homePicture(){
+        return services.get(`${base.localhost}/homePicture`)
     }
 }
 export default nodeAPI

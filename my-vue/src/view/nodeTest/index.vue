@@ -42,9 +42,10 @@ export default {
                 if(res.isSuccess){
                     this.$message.success('登陆成功')
                     sessionStorage.setItem('token',res.token)
+                    this.$router.push('/du/home')
                 }
                 else{
-                    this.$message.success(res.msg)
+                    this.$message.error(res.msg)
                 }
             })
         },
