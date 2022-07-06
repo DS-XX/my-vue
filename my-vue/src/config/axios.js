@@ -10,7 +10,7 @@ import axiosObj from 'axios'
 // import store from '../store'
 const store = {
   state: {
-    token: '123'
+    token: sessionStorage.getItem('token')
   }
 }
 const defaultConfig = {
@@ -76,8 +76,9 @@ _axios.interceptors.request.use(
   function (config) {
     // 从vuex里获取token
     const token = store.state.token
+    debugger
     // 如果token存在就在请求头里添加
-    token && (config.headers.token = token)
+    token && (config.headers.Authorization = `Bearer ${token}`)
     return config
   },
   function (error) {
@@ -91,6 +92,7 @@ _axios.interceptors.request.use(
 // 响应拦截器
 _axios.interceptors.response.use(
   function (response) {
+    console.log(response,'this.is.response')
     // 清除本地存储中的token,如果需要刷新token，在这里通过旧的token跟服务器换新token，将新的token设置的vuex中
     if (response.data.code === 401) {
       localStorage.removeItem('token')

@@ -24,7 +24,8 @@ module.exports = {
 				  "^/myself-axios": ""
 				},
 				// target: "https://mtxtest.weioutech.com:4438/",
-				target: "http://192.168.10.91:8801/",
+				// target: "http://192.168.10.91:8801/",
+				target: "http://127.0.0.1:8082",
 				// target: 'https://test.glxytech.com:32443/',
 				// target: "https://www.glxytech.com/",
 				ws: true,

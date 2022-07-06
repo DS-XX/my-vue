@@ -38,5 +38,13 @@ export default[
     meta: {
       title: 'node的test'
     }
+  },
+  {
+    name: 'register',
+    path: '/du/register',
+    component: ()=>import('./view/nodeTest/register'),
+    meta: {
+      title: 'register'
+    }
   }
 ]
