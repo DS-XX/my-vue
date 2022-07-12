@@ -60,14 +60,14 @@ var connection = mysql.createConnection({
    
   connection.connect();
 
-  let sql = 'select * from user'
-  connection.query(sql, function (error, results, fields) {
-    if (error) throw error;
-    console.log('The solution is: ', results[0].solution);
-    console.log('--------------------------SELECT----------------------------');
-    console.log(results);
-    console.log('------------------------------------------------------------\n\n');  
-  });
+//   let sql = 'select * from user'
+//   connection.query(sql, function (error, results, fields) {
+//     if (error) throw error;
+//     console.log('The solution is: ', results[0].solution);
+//     console.log('--------------------------SELECT----------------------------');
+//     console.log(results);
+//     console.log('------------------------------------------------------------\n\n');  
+//   });
 
 
 
@@ -187,6 +187,30 @@ app.get('/homePicture',(req,res)=>{
 
 app.get('/user:loginName',(req,res)=>{
     const params = req.params
+})
+
+app.post('/newTable/list',(req,res)=>{
+    sql = `select * from newTable`
+    connection.query(sql,(err,requests)=>{
+        if(!err){
+            console.log(requests)
+            res.send({
+                data: requests
+            })
+        }
+    })
+})
+
+app.post('/newTable/suppliers',(req,res)=>{
+    sql = `select * from suppliers`
+    connection.query(sql,(err,requests)=>{
+        if(!err){
+            console.log(requests)
+            res.send({
+                data: requests
+            })
+        }
+    })
 })
 
 app.post('/insertUser',(req,res)=>{

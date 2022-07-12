@@ -20,6 +20,7 @@ export default {
     },
     mounted(){
         this.$api.nodeAPI.homePicture().then((res)=>{
+            console.log(res,'picture res')
             this.homePicture = res.data.url
         })
     },

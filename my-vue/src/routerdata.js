@@ -54,5 +54,13 @@ export default[
     meta: {
       title: 'home'
     }
+  },
+  {
+    name: 'newTable',
+    path: '/du/newTable',
+    component: ()=>import('./view/nodeTest/newTable'),
+    meta: {
+      title: 'home'
+    }
   }
 ]
