@@ -190,7 +190,7 @@ app.get('/user:loginName',(req,res)=>{
 })
 
 app.post('/newTable/list',(req,res)=>{
-    sql = `select * from submitTable`
+    sql = `select * from newTable`
     connection.query(sql,(err,requests)=>{
         if(!err){
             console.log(requests)
