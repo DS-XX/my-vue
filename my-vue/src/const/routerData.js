@@ -18,6 +18,10 @@ const routerData = [
       {
         name: 'node的测试',
         pathUrl: '/du/nodeTest'
+      },
+      {
+        name: '新的el-table',
+        pathUrl: '/du/newTable'
       }
     ]
   }

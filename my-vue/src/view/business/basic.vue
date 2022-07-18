@@ -49,8 +49,26 @@
     </el-button>
 </el-row>
     <el-table :data="tableData">
-      <el-table-column label="账号" prop="loginName"></el-table-column>
+      <el-table-column fixed label="账号" prop="loginName"></el-table-column>
       <el-table-column label="密码" prop="password"></el-table-column>
+            <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+            <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+      <el-table-column label="密码" prop="password"></el-table-column>
+
+
     </el-table>
   </div>
 </template>
