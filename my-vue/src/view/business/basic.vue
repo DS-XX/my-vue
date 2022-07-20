@@ -51,30 +51,22 @@
     <el-table :data="tableData">
       <el-table-column fixed label="账号" prop="loginName"></el-table-column>
       <el-table-column label="密码" prop="password"></el-table-column>
-            <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-            <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-      <el-table-column label="密码" prop="password"></el-table-column>
-
-
+      <el-table-column label="密码" prop="password">
+        <template slot-scope="scope">
+          <NewHeadButton
+            v-bind="editButtonConfig"
+            :click-data="scope.row">
+          </NewHeadButton>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
 <script>
+import NewHeadButton from '@/components/new-header-button'
 export default {
   name: 'Basic',
+  components:{NewHeadButton},
   data () {
     return {
       tags: [
@@ -88,14 +80,25 @@ export default {
       inputWidth: '',
       inputValue: '',
       inputVisible: false,
-      tableData:[]
+      tableData:[],
+      editButtonConfig:{
+        buttonItems:[
+          {
+            type: 'text',
+            text: '测试',
+            atClick: ()=>{
+                return this.test()
+            }
+          }
+        ]
+      }
     }
   },
   methods: {
     searchAll(){
       this.$api.loginAPI.searchAll().then(res=>{
-        if(res?.data?.payload){
-          this.tableData = res.data.payload
+        if(res?.data){
+          this.tableData = res.data
         }
       })
     },
@@ -145,6 +148,12 @@ export default {
         }
       }
       return true
+    },
+    test(){
+      for(let i of new Array(2000)){
+        console.log(1)
+      }
+      
     }
   }
 }

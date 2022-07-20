@@ -139,6 +139,17 @@ app.post('/login',(req,res)=>{
     
 })
 
+app.get('/user/list',(req,res)=>{
+    sql = 'select * from user'
+    connection.query(sql,(err,result)=>{
+        if(result){
+            res.send({
+                data: result
+            })
+        }
+    })
+})
+
 app.post('/register',(req,res)=>{
     const body = req.body
     sql = 'insert into user set ?'
