@@ -7,22 +7,31 @@
     <el-button @click="addTags">
         添加标签
     </el-button>
-    <tags-item
-    :tags="tags"/>
+    <show-code-error :visible="visible" @changeVisible="()=>visible = false">
+
+    </show-code-error>
+    <el-button @click="()=>visible = true">
+        显示唯一码
+    </el-button>
+    <!-- <tags-item
+    :tags="tags"/> -->
   </div>
 </template>
 <script>
 import tagsItem from './tags-management/components/tag-item'
+import ShowCodeError from '@/components/show-code-error/index.vue'
 export default {
   name: 'DoorTags',
   components:{
-    tagsItem
-  },
+    tagsItem,
+    ShowCodeError
+},
   data(){
     return{
       num: 1,
       inputValue: '',
-      tags:[]
+      tags:[],
+      visible: false,
     }
   },
   mounted(){
@@ -48,7 +57,7 @@ export default {
           this.tags = res.data.payload
         }
       }) 
-    }
+    },
   }
 }
 </script>

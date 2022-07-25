@@ -6,6 +6,9 @@ const tagsAPI = {
     },
     createTagsList(parmas){
         return services.post(`${base.localhost}/tags/createTagsList`,parmas)
+    },
+    getOnlyOneCode(){
+        return services.post(`${base.localhost}/tags/getOnlyOneCode`)
     }
 }
 export default tagsAPI

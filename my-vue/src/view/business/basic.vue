@@ -60,13 +60,23 @@
         </template>
       </el-table-column>
     </el-table>
+    <div>
+        <div v-for="item in tableData" :key="item.id">
+          {{item}}
+        </div>
+    </div>
+    <AttrsListen test1="test1" height="height" @click="test"
+        ></AttrsListen>
   </div>
 </template>
 <script>
 import NewHeadButton from '@/components/new-header-button'
+import AttrsListen from '@/components/attrs-listen'
+
+
 export default {
   name: 'Basic',
-  components:{NewHeadButton},
+  components:{NewHeadButton,AttrsListen},
   data () {
     return {
       tags: [
@@ -150,10 +160,13 @@ export default {
       return true
     },
     test(){
-      for(let i of new Array(2000)){
-        console.log(1)
-      }
-      
+      console.log('复制又称')
+        this.$copyText(JSON.stringify(this.tableData)).then(()=>{
+          console.log('复制成功')
+        })
+    },
+    onCopy(){
+      this.$message.success('成功')
     }
   }
 }

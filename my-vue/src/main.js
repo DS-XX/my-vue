@@ -8,7 +8,9 @@ import './element'
 import './ant-design-vue'
 import router from './router'
 import base from './api/base.js'
+import VueClipboard from 'vue-clipboard2'
 
+Vue.use(VueClipboard)
 Vue.config.productionTip = false
 // axios.defaults.baseURL = 'http//127.0.0.1:8081'
 // axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
