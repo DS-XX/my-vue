@@ -1,12 +1,31 @@
 <template>
-    
+    <div>
+        <el-input v-model="inputValue" type="textarea">
+
+        </el-input>
+        <el-button @click="() => answear = judgeGrid()">
+            提交
+        </el-button>
+        <el-card>
+            <div v-for="(item,index) in answear" :key="index">
+                {{item}}
+            </div>
+        </el-card>
+    </div>
 </template>
 <script>
+import {tranToArray,tranLintToArray} from './filter'
 export default {
     name: 'findSameNum',
     data(){
         return{
-
+            inputValue: '[40,10,20,30]\n[100,100,100]\n[37,12,28,9,100,56,80,5,12]',
+            answear: '',
+        }
+    },
+    watch:{
+        answear(val){
+            console.log(val,'answear')
         }
     },
     methods:{
@@ -166,7 +185,7 @@ export default {
                 }
             }
             return arrive
-        },
+        },               
         lastTimeNew(buses,passengers,capacity){
             //首先遍历公交的数组，里面循环数组，如果符合条件的上车
             //结束循环后，从后往前找
@@ -249,7 +268,68 @@ export default {
             }
             digui(1)
             return sum ** 2
-        }
+        },
+        transArr(val){
+            const arr = tranToArray(val)
+            const newArr = arr.map((item,index)=>[item,index])
+            newArr.sort((a,b)=>a[0]-b[0])
+            const out = []
+            let lastItem = []
+            let addNum = 1
+            newArr.forEach((item,index)=>{
+                if(item[0] === lastItem[0]){
+                    out[item[1]] = out[lastItem[1]]
+                    addNum -= 1
+                }
+                else{
+                    out[item[1]] = index + addNum
+                    lastItem = item
+                }
+            })
+            return out
+        },
+        judgeGrid(val){
+            let arr = this.inputValue.trim().split(/\n+/g)
+            arr = arr.map(item=>{
+                return JSON.parse(item)
+            })
+            let p1,p2,p3,p4
+            function lineLong(a,b){
+                // if(a[0]===b[0]){
+                //     return Math.abs(Math.abs(a[1])-Math.abs(b[1]))
+                // }
+                // else if(a[1]===b[1]){
+                //     return Math.abs(Math.abs(a[0])-Math.abs(b[0]))
+                // }
+                // else{
+                    return (a[0]-b[0])**2 + (a[1]-b[1])**2
+                // }
+            }
+            let lingList = []
+            for(let i of arr){
+                for(let j of arr){
+                    if(i==j){
+                        continue
+                    }
+                    const line = lineLong(i,j)
+                    if(!lingList.includes(line)){
+                        lingList.push(line)
+                    }
+                    if(lingList.length>2){
+                        return false
+                    }
+                }
+            }
+            return true
+        },
+        muitipleLineOut(){
+            const multiArr = tranLintToArray(this.inputValue)
+            let out = []
+            for(let i of multiArr){
+                out.push(this.transArr(i))
+            }
+            return out
+        },
     }
 }
 </script>

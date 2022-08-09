@@ -62,5 +62,13 @@ export default[
     meta: {
       title: 'home'
     }
-  }
+  },
+  {
+    name: 'findSameNum',
+    path: '/du/leetcode/findSameNum',
+    component: ()=>import('./view/leetcode/findSameNum'),
+    meta: {
+      title: 'findSameNum'
+    }
+  },
 ]

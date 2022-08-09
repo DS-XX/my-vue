@@ -22,6 +22,10 @@ const routerData = [
       {
         name: '新的el-table',
         pathUrl: '/du/newTable'
+      },
+      {
+        name: 'leetcode',
+        pathUrl: '/du/leetcode/findSameNum'
       }
     ]
   }
